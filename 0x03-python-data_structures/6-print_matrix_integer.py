@@ -1,8 +1,14 @@
 #!/usr/bin/python3
 def print_matrix_integer(matrix=[[]]):
-    for element in matrix:
-        for number in element:
-            print("{:d}".format(number), end="")
-            if(number is not element[len(element)-1]):
-                print(" ", end="")
+    rows = len(matrix)  # no. of rows/length of the matrix
+    columns = len(matrix[0])  # length of the first row in matrix
+
+    if matrix == [[]]:
         print()
+
+    for x in range(rows):
+        for w in range(columns):
+            if w == columns - 1:
+                print("{:d}".format(matrix[x][w]))
+            else:
+                print("{:d}".format(matrix[x][w]), end=" ")
