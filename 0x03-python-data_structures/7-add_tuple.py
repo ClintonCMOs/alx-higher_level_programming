@@ -1,10 +1,13 @@
 #!/usr/bin/python3
 def add_tuple(tuple_a=(), tuple_b=()):
+    e = list(tuple_a)  # convert tuples to list for modification
+    f = list(tuple_b)
 
-    a = tuple_a or (0, 0)
-    b = tuple_b or (0, 0)
-    if(len(a) is 1):
-        a = (tuple_a[0], 0)
-    if(len(b) is 1):
-        b = (tuple_b[0], 0)
-    return((a[0] + b[0], a[1] + b[1]))
+    while len(e) < 2:
+        e.append(0)
+    while len(f) < 2:
+        f.append(0)
+
+    e = e[:2]  # only two elements per tuple to be used
+    f = f[:2]
+    return (e[0] + f[0], e[1] + f[1])
