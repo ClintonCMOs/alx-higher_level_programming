@@ -11,7 +11,7 @@ def result():
     """ Prints result. """
     for row in range(len(board)):
         for col in range(len(board[row])):
-            if board[row][col] == 1:  # if a queen is met
+            if board[row][col] == 1:  # check if a queen is met
                 matrix[row][1] = col  # matrix stores the column
     return matrix
 
@@ -20,7 +20,7 @@ def backtrack(r, n, col, posDiag, negDiag):
     """ Recursive function. """
     global board
     if r == n:  # end of row
-        print(result())  # print solution
+        print(result())  # print soln
         return
 
     for c in range(n):
