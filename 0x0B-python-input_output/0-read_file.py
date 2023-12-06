@@ -1,9 +1,8 @@
 #!/usr/bin/python3
-"""module documentation of reading a textfile"""
+"""Defines a text file-reading function."""
 
 
 def read_file(filename=""):
-    """function that reads a text file and prints to stdout"""
-    with open(filename, mode="r", encoding="utf-8") as f:
-        for line in f:
-            print("{}".format(line), end="")
+    """Print the contents of a UTF8 text file to stdout."""
+    with open(filename, encoding="utf-8") as f:
+        print(f.read(), end="")
