@@ -1,5 +1,10 @@
 #!/usr/bin/node
 
-for (const line of ['C is fun', 'Python is cool', 'JavaScript is amazing']) {
-        console.log(line);
-      }
+const lines = ['C is fun', 'Python is cool', 'JavaScript is amazing'];
+let combinedLines = '';
+
+for (const line of lines) {
+    combinedLines += line + '\n';
+}
+
+console.log(combinedLines);
