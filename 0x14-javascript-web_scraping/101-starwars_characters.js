@@ -1,30 +1,25 @@
 #!/usr/bin/node
-const request = require('request'); // Use const for requiring modules
 
-const url = `https://swapi-api.hbtn.io/api/films/${process.argv[2]}`; // Use template literals for string concatenation
+const request = require('request');
+const id = process.argv[2];
+const url = `https://swapi-api.alx-tools.com/api/films/${id}`;
 
-// Use arrow functions for callbacks
-request(url, (error, response, body) => {
-  if (!error && response.statusCode === 200) { // Check if response is successful
-    const characters = JSON.parse(body).characters;
-    printCharacters(characters, 0);
+request.get(url, (error, response, body) => {
+  if (error) {
+    console.log(error);
   } else {
-    console.error(error); // Proper error handling
+    const content = JSON.parse(body);
+    const characters = content.characters;
+    // console.log(characters);
+    for (const character of characters) {
+      request.get(character, (error, response, body) => {
+        if (error) {
+          console.log(error);
+        } else {
+          const names = JSON.parse(body);
+          console.log(names.name);
+        }
+      });
+    }
   }
 });
-
-// Use arrow functions for callbacks
-function printCharacters(characters, index) {
-  if (index >= characters.length) {
-    return; // Exit condition for recursion
-  }
-
-  request(characters[index], (error, response, body) => {
-    if (!error && response.statusCode === 200) {
-      console.log(JSON.parse(body).name);
-      printCharacters(characters, index + 1);
-    } else {
-      console.error(error); // Proper error handling
-    }
-  });
-}
